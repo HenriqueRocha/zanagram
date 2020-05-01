@@ -3,30 +3,26 @@ package zanagram
 import java.io.File
 import kotlin.system.measureTimeMillis
 
-class Node<T>(val data: T, val next: Node<T>?)
+class Node<T>(val data: T, var next: Node<T>?)
 
-fun <T> add(data: T, node: Node<T>?): Node<T>? =
-    add(data, node, null)
+fun <T> add(data: T, node: Node<T>?): Node<T> {
+    if (node == null) return Node(data, null)
+    var n = node
+    while (n!!.next != null) n = n.next
+    n.next = Node(data, null)
+    return node
+}
 
-tailrec fun <T> add(
-    data: T, node: Node<T>?, acc: Node<T>?
-): Node<T>? =
-    if (node == null) reverse(Node(data, acc))
-    else add(data, node.next, Node(node.data, acc))
-
-fun <T> reverse(node: Node<T>?): Node<T>? =
-    reverse(node, null)
-
-tailrec fun <T> reverse(
-    node: Node<T>?, acc: Node<T>?
-): Node<T>? =
-    if (node == null) acc
-    else reverse(node.next, Node(node.data, acc))
-
-fun <T> size(node: Node<T>?): Int = size(node, 0)
-
-tailrec fun <T> size(node: Node<T>?, acc: Int): Int =
-    if (node == null) acc else size(node.next, 1 + acc)
+fun <T> size(node: Node<T>?): Int {
+    if (node == null) return 0
+    var size = 0
+    var n = node
+    while (n != null) {
+        size++
+        n = n.next
+    }
+    return size
+}
 
 fun main(args: Array<String>) {
     var list: Node<String>? = null
