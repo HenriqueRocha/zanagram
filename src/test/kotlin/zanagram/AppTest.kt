@@ -19,6 +19,31 @@ class AppTest {
     }
 
     @Test
+    fun `add twice makes size equal 2`() {
+        var list: Node<Int>? = null
+        list = add(1, list)
+        list = add(2, list)
+
+        val size = size(list)
+
+        assertEquals(2, size)
+    }
+
+    @Test
+    fun `add adds to the end`() {
+        var list: Node<Int>? = null
+
+        list = add(1, list)
+        list = add(2, list)
+
+        val first = list!!.data
+        val second = list.next!!.data
+
+        assertEquals(1, first)
+        assertEquals(2, second)
+    }
+
+    @Test
     fun `size of empty list is zero`() {
         var list: Node<Int>? = null
 
