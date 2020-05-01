@@ -18,15 +18,76 @@ fun <T> size(node: Node<T>?): Int {
     return size
 }
 
+fun <T> contains(e: T, list: Node<T>?): Boolean {
+    var p = list
+    while (p != null) {
+        if (p.data == e) return true
+        p = p.next
+    }
+    return false
+}
+
+fun permutations(s: String): Node<String>? {
+    permutations(s.toCharArray(), 0, s.length - 1)
+    return permutations
+}
+
+var permutations: Node<String>? = null
+
+fun permutations(s: CharArray, lowerBound: Int, upperBound: Int) {
+    if (lowerBound == upperBound) permutations = Node(String(s), permutations)
+    else {
+        for (i in lowerBound..upperBound) {
+            s.swap(lowerBound, i)
+            permutations(s, lowerBound + 1, upperBound)
+            s.swap(lowerBound, i)
+        }
+    }
+}
+
+fun CharArray.swap(i: Int, j: Int) {
+    val t = this[i]
+    this[i] = this[j]
+    this[j] = t
+}
+
+fun printPermutations(s: String) {
+    printPermutations(s.toCharArray(), 0, s.length - 1)
+}
+
+fun printPermutations(s: CharArray, lowerBound: Int, upperBound: Int) {
+    if (lowerBound == upperBound) println(String(s))
+    else {
+        for (i in lowerBound..upperBound) {
+            s.swap(lowerBound, i)
+            printPermutations(s, lowerBound + 1, upperBound)
+            s.swap(lowerBound, i)
+        }
+    }
+}
+
 fun main(args: Array<String>) {
-    var list: Node<String>? = null
+    var dictionary: Node<String>? = null
     val timeToLoad = measureTimeMillis {
-        File("words_alpha.txt").forEachLine { list = add(it, list) }
+        File("words_alpha.txt").forEachLine { dictionary = add(it, dictionary) }
     }
     var size = 0
-    val timeToSize = measureTimeMillis { size = size(list) }
+    val timeToSize = measureTimeMillis { size = size(dictionary) }
 
     println("Time to load: $timeToLoad")
     println("Time to size: $timeToSize")
-    println("Number of words: $size")
+
+    val word = "listen"
+    val listOfPermutations = permutations(word)
+    val timeToFindPermutations = measureTimeMillis {
+        var p = listOfPermutations
+        while (p != null) {
+            if (contains(p.data, dictionary)) {
+                println(p.data)
+            }
+            p = p.next
+        }
+    }
+
+    println("Time to find permutations: $timeToFindPermutations")
 }
