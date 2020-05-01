@@ -1,8 +1,6 @@
 package zanagram
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
+import kotlin.test.*
 
 class AppTest {
     @Test
@@ -55,4 +53,49 @@ class AppTest {
 
         assertEquals(1, size(list))
     }
+
+    @Test
+    fun `contains on empty list returns false`() {
+        var list: Node<Int>? = null
+
+        assertFalse(contains(1, list))
+    }
+
+    @Test
+    fun `list with 1 contains 1`() {
+        var list: Node<Int>? = null
+        list = add(1, list)
+
+        assertTrue(contains(1, list))
+    }
+
+    @Test
+    fun `list with 1 does not contain 2`() {
+        var list: Node<Int>? = null
+        list = add(1, list)
+
+        assertFalse(contains(2, list))
+    }
+
+    @Test
+    fun `single letter has just one permutation`() {
+        val s = "a"
+        permutations = null
+        val permutations: Node<String>? = permutations(s)
+
+        assertEquals("a", permutations!!.data)
+        assertEquals(1, size(permutations))
+    }
+
+    @Test
+    fun `ab has two permutations`() {
+        val s = "ab"
+        permutations = null
+        val permutations: Node<String>? = permutations(s)
+
+        assertEquals("ba", permutations!!.data)
+        assertEquals("ab", permutations.next!!.data)
+        assertEquals(2, size(permutations))
+    }
+
 }
