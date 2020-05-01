@@ -4,11 +4,33 @@
 package zanagram
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class AppTest {
-    @Test fun testAppHasAGreeting() {
-        val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+    @Test
+    fun `add makes list not empty`() {
+        var list: Node<Int>? = null
+
+        list = add(1, list)
+
+        assertNotNull(list, "list should not be empty")
+        assertEquals(1, list.data)
+    }
+
+    @Test
+    fun `size of empty list is zero`() {
+        var list: Node<Int>? = null
+
+        assertEquals(0, size(list))
+    }
+
+    @Test
+    fun `add 1 should make size equal 1`() {
+        var list: Node<Int>? = null
+
+        list = add(1, list)
+
+        assertEquals(1, size(list))
     }
 }
