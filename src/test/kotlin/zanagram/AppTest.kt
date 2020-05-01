@@ -27,7 +27,7 @@ class AppTest {
     }
 
     @Test
-    fun `add adds to the end`() {
+    fun `add adds to the beginning`() {
         var list: Node<Int>? = null
 
         list = add(1, list)
@@ -36,8 +36,8 @@ class AppTest {
         val first = list!!.data
         val second = list.next!!.data
 
-        assertEquals(1, first)
-        assertEquals(2, second)
+        assertEquals(2, first)
+        assertEquals(1, second)
     }
 
     @Test
