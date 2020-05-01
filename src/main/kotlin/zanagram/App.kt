@@ -5,13 +5,7 @@ import kotlin.system.measureTimeMillis
 
 class Node<T>(val data: T, var next: Node<T>?)
 
-fun <T> add(data: T, node: Node<T>?): Node<T> {
-    if (node == null) return Node(data, null)
-    var n = node
-    while (n!!.next != null) n = n.next
-    n.next = Node(data, null)
-    return node
-}
+fun <T> add(data: T, node: Node<T>?): Node<T> = Node(data, node)
 
 fun <T> size(node: Node<T>?): Int {
     if (node == null) return 0
