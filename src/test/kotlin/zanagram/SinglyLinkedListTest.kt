@@ -52,4 +52,30 @@ class SinglyLinkedListTest {
         assertTrue(container[1] == 2)
         assertTrue(container[2] == 3)
     }
+
+    @Test
+    fun `set first element should work`() {
+        container.add(1)
+
+        container[0] = 2
+
+        assertEquals(2, container[0])
+    }
+
+    @Test
+    fun `set should set correct element`() {
+        container.apply {
+            add(1)
+            add(2)
+            add(3)
+        }
+
+        container[0] = 4
+        container[1] = 5
+        container[2] = 6
+
+        assertTrue(container[0] == 4)
+        assertTrue(container[1] == 5)
+        assertTrue(container[2] == 6)
+    }
 }

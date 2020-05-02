@@ -22,4 +22,9 @@ interface List<E> {
      * Returns the element at the specified index in the list.
      */
     operator fun get(index: Int): E
+
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     */
+    operator fun set(index: Int, element: E)
 }

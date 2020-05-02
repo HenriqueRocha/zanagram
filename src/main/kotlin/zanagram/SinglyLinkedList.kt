@@ -59,4 +59,17 @@ class SinglyLinkedList<E> : List<E> {
         }
         return p!!.data
     }
+
+    override fun set(index: Int, element: E) {
+        if (index == 0) {
+            node = Node(element, node!!.next)
+        } else {
+            var p = node
+            for (i in 0 until index - 1) {
+                p = p!!.next
+            }
+            val newNode = Node(element, p!!.next!!.next)
+            p.next = newNode
+        }
+    }
 }

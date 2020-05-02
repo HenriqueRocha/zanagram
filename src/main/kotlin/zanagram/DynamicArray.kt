@@ -55,4 +55,8 @@ class DynamicArray<E> : List<E> {
     override fun get(index: Int): E {
         return elements[index] as E
     }
+
+    override fun set(index: Int, element: E) {
+        elements[index] = element
+    }
 }
