@@ -93,6 +93,51 @@ class DynamicArrayTest {
     }
 
     @Test
+    fun `5 4 3 2 1 selectionsort should be 1 2 3 4 5`() {
+        container.apply {
+            add(5)
+            add(4)
+            add(3)
+            add(2)
+            add(1)
+        }
+
+        container.selectionSort()
+
+        assertEquals("[1,2,3,4,5]", container.toString())
+    }
+
+    @Test
+    fun `5 4 3 2 1 insertionsort should be 1 2 3 4 5`() {
+        container.apply {
+            add(5)
+            add(4)
+            add(3)
+            add(2)
+            add(1)
+        }
+
+        container.insertionSort()
+
+        assertEquals("[1,2,3,4,5]", container.toString())
+    }
+
+    @Test
+    fun `5 4 3 2 1 quicksort should be 1 2 3 4 5`() {
+        container.apply {
+            add(5)
+            add(4)
+            add(3)
+            add(2)
+            add(1)
+        }
+
+        container.quickSort()
+
+        assertEquals("[1,2,3,4,5]", container.toString())
+    }
+
+    @Test
     fun `binarySearch on empty array should return -1`() {
         assertEquals(-1, container.binarySearch(5))
     }

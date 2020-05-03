@@ -29,11 +29,11 @@ fun CharArray.swap(i: Int, j: Int) {
 fun main(args: Array<String>) {
     val dictionary = DynamicArray<String>()
     val timeToLoad = measureTimeMillis {
-        File("words_alpha.txt").forEachLine { dictionary.add(it) }
+        File("words.txt").forEachLine { dictionary.add(it) }
     }
     println("Time to load: $timeToLoad")
 
-    val timeToSort = measureTimeMillis { dictionary.bubbleSort() }
+    val timeToSort = measureTimeMillis { dictionary.quickSort() }
     println("Time to sort: $timeToSort")
 
     val word = "listen"
