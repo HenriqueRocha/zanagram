@@ -27,22 +27,22 @@ fun CharArray.swap(i: Int, j: Int) {
 }
 
 fun main(args: Array<String>) {
-    val dictionary = DynamicArray<String>()
+    val dictionary = Set<String>()
     val timeToLoad = measureTimeMillis {
         File("words.txt").forEachLine { dictionary.add(it) }
     }
     println("Time to load: $timeToLoad")
 
-    val timeToSort = measureTimeMillis { dictionary.quickSort() }
-    println("Time to sort: $timeToSort")
+//    val timeToSort = measureTimeMillis { dictionary.quickSort() }
+//    println("Time to sort: $timeToSort")
 
     val word = "listen"
     val listOfPermutations = permutations(word)
     val timeToFindPermutations = measureTimeMillis {
         for (i in 0 until listOfPermutations.size()) {
-            val word = listOfPermutations[i]
-            if (dictionary.binarySearch(word) != -1) {
-                println(word)
+            val w = listOfPermutations[i]
+            if (dictionary.contains(w)) {
+                println(w)
             }
         }
     }
